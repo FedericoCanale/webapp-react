@@ -23,23 +23,36 @@ function HomePage() {
 
     return (
         <div>
-            <h2>Lista film</h2>
+            <h2 className="mb-4">Lista film</h2>
 
-            <ul>
+            {/* Griglia Bootstrap */}
+            <div className="row g-3">
                 {movies.map((movie) => (
-                    <li key={movie.id}>
-                        {movie.image && (
-                            <img
-                                src={`http://localhost:3000/img/movies_cover/${movie.image}`}
-                                alt={movie.title}
-                                width="120"
-                            />
-                        )}
+                    <div className="col-6 col-md-4 col-lg-3" key={movie.id}>
+                        <Link
+                            to={`/movies/${movie.id}`}
+                            className="text-decoration-none text-dark"
+                        >
+                            <div className="card h-100">
 
-                        <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
-                    </li>
+                                {/* Immagine */}
+                                {movie.image && (
+                                    <img
+                                        src={`http://localhost:3000/img/movies_cover/${movie.image}`}
+                                        className="movie-card-img"
+                                        alt={movie.title}
+                                    />
+                                )}
+
+                                {/* Titolo */}
+                                <div className="card-body">
+                                    <h5 className="card-title text-center">{movie.title}</h5>
+                                </div>
+                            </div>
+                        </Link>
+                    </div>
                 ))}
-            </ul>
+            </div>
         </div>
     );
 }
