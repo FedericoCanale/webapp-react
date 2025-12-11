@@ -1,13 +1,11 @@
-function Layout() {
+function Layout({ children }) {
     return (
         <div>
             <header>
                 <h1>Webapp Film</h1>
             </header>
 
-            <main>
-                <p>Contenuto della pagina</p>
-            </main>
+            <main>{children}</main>
         </div>
     );
 }

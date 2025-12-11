@@ -1,5 +1,7 @@
+import Layout from "./components/Layout";
+
 function App() {
-  return <h1 className="text-center mt-4">WebApp Film</h1>;
+  return <Layout />;
 }
 
 export default App;
