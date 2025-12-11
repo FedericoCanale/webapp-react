@@ -28,27 +28,33 @@ function MovieDetailPage() {
     }
 
     return (
-        <div>
-            <h2>{movie.title}</h2>
+        <div className="movie-detail">
+
+            <h2 className="mb-3">{movie.title}</h2>
+
             {movie.image && (
                 <img
                     src={`http://localhost:3000/img/movies_cover/${movie.image}`}
                     alt={movie.title}
-                    width="120"
+                    className="movie-detail-img mb-4"
                 />
             )}
 
-            <h3>Descrizione</h3>
+            <h3 className="mb-2">Descrizione</h3>
+            <p className="mb-4">{movie.abstract}</p>
 
-            <p>{movie.abstract}</p>
+            <h3 className="mb-2">Recensioni</h3>
 
-            <h3>Recensioni</h3>
-
-            <ul>
+            <ul className="list-unstyled mt-3">
                 {movie.reviews.map((review) => (
-                    <li key={review.id}>
+                    <li key={review.id} className="review-item mb-3 pb-2 border-bottom">
                         <strong>{review.name}</strong>
-                        {review.vote && ` (${review.vote}/5)`}: {review.text}
+                        {review.vote && (
+                            <span className="ms-2 badge bg-primary">
+                                {review.vote}/5
+                            </span>
+                        )}
+                        <p className="mb-0">{review.text}</p>
                     </li>
                 ))}
             </ul>
