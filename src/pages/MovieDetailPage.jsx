@@ -24,7 +24,13 @@ function MovieDetailPage() {
     }
 
     if (!movie) {
-        return <p>Caricamento...</p>;
+        return (
+            <div className="d-flex justify-content-center mt-5">
+                <div className="spinner-border text-primary" role="status">
+                    <span className="visually-hidden">Caricamento...</span>
+                </div>
+            </div>
+        );
     }
 
     return (
