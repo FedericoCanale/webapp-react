@@ -31,7 +31,9 @@ function MovieDetailPage() {
         <div>
             <h2>{movie.title}</h2>
 
-            {movie.description && <p>{movie.description}</p>}
+            <h3>Descrizione</h3>
+
+            <p>{movie.abstract}</p>
 
             <h3>Recensioni</h3>
 
