@@ -5,7 +5,9 @@ function Layout({ children }) {
                 <h1>Webapp Film</h1>
             </header>
 
-            <main>{children}</main>
+            <main>
+                {children}
+            </main>
         </div>
     );
 }
