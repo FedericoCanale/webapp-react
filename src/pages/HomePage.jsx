@@ -28,9 +28,15 @@ function HomePage() {
             <ul>
                 {movies.map((movie) => (
                     <li key={movie.id}>
-                        <Link to={`/movies/${movie.id}`}>
-                            {movie.title}
-                        </Link>
+                        {movie.image && (
+                            <img
+                                src={`http://localhost:3000/img/movies_cover/${movie.image}`}
+                                alt={movie.title}
+                                width="120"
+                            />
+                        )}
+
+                        <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
                     </li>
                 ))}
             </ul>

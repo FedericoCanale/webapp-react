@@ -30,6 +30,13 @@ function MovieDetailPage() {
     return (
         <div>
             <h2>{movie.title}</h2>
+            {movie.image && (
+                <img
+                    src={`http://localhost:3000/img/movies_cover/${movie.image}`}
+                    alt={movie.title}
+                    width="120"
+                />
+            )}
 
             <h3>Descrizione</h3>
 
