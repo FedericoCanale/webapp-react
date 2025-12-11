@@ -18,11 +18,23 @@ function MovieDetailPage() {
         <div>
             <h2>{movie.title}</h2>
 
+            {/* Descrizione */}
+            {movie.description && <p>{movie.description}</p>}
+
             <h3>Recensioni</h3>
 
             <ul>
                 {movie.reviews.map((review) => (
-                    <li key={review.id}>{review.text}</li>
+                    <li key={review.id}>
+                        {/* Autore */}
+                        <strong>{review.name}</strong>
+
+                        {/* Voto */}
+                        {review.vote && ` (${review.vote}/5)`}
+
+                        {/* Testo */}
+                        : {review.text}
+                    </li>
                 ))}
             </ul>
         </div>
