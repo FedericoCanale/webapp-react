@@ -32,7 +32,23 @@ function MovieDetailPage() {
             </div>
         );
     }
+    function renderStars(vote) {
+        const stars = [];
 
+        for (let i = 1; i <= 5; i++) {
+            if (i <= vote) {
+                stars.push(
+                    <i key={i} className="bi bi-star-fill text-warning"></i>
+                );
+            } else {
+                stars.push(
+                    <i key={i} className="bi bi-star text-warning"></i>
+                );
+            }
+        }
+
+        return stars;
+    }
     return (
         <div className="movie-detail">
 
@@ -55,11 +71,13 @@ function MovieDetailPage() {
                 {movie.reviews.map((review) => (
                     <li key={review.id} className="review-item mb-3 pb-2 border-bottom">
                         <strong>{review.name}</strong>
+
                         {review.vote && (
-                            <span className="ms-2 badge bg-primary">
-                                {review.vote}/5
+                            <span className="ms-2">
+                                {renderStars(review.vote)}
                             </span>
                         )}
+
                         <p className="mb-0">{review.text}</p>
                     </li>
                 ))}
