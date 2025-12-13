@@ -18,6 +18,8 @@ main {
   height: 400px;
   object-fit: cover;
   border-radius: 4px 4px 0 0;
+  transition: none;
+
 }
 
 .movie-detail {
@@ -36,4 +38,16 @@ main {
 
 .review-item {
   font-size: 0.95rem;
+}
+
+.card {
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+  will-change: transform;
+}
+
+.card:hover {
+  transform: translateY(-6px) rotate(-1deg);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
 }
