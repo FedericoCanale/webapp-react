@@ -1,12 +1,25 @@
 import { useState } from "react";
+import axios from "axios";
 
-function ReviewForm() {
+function ReviewForm({ movieId }) {
     const [name, setName] = useState("");
     const [vote, setVote] = useState(5);
     const [text, setText] = useState("");
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(name, vote, text);
+
+        axios.post(`http://localhost:3000/movies/${movieId}/reviews`, {
+            name,
+            vote,
+            text,
+        })
+            .then((res) => {
+                console.log("Review salvata", res.data);
+            })
+            .catch((err) => {
+                console.error(err);
+            });
     };
 
     return (

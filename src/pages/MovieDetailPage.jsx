@@ -83,7 +83,7 @@ function MovieDetailPage() {
                     </li>
                 ))}
             </ul>
-            <ReviewForm />
+            <ReviewForm movieId={id} />
         </div>
     );
 
