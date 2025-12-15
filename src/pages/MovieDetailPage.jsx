@@ -83,7 +83,15 @@ function MovieDetailPage() {
                     </li>
                 ))}
             </ul>
-            <ReviewForm movieId={id} />
+            <ReviewForm
+                movieId={id}
+                onReviewCreated={(newReview) => {
+                    setMovie({
+                        ...movie,
+                        reviews: [...movie.reviews, newReview],
+                    });
+                }}
+            />
         </div>
     );
 
