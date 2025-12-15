@@ -40,40 +40,46 @@ function ReviewForm({ movieId, onReviewCreated }) {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h4>Aggiungi recensione</h4>
+        <form onSubmit={handleSubmit} className="mt-4">
+            <h4 className="mb-3">Aggiungi recensione</h4>
 
-            <div>
-                <label>Nome</label><br />
+            <div className="mb-3">
+                <label className="form-label">Nome</label>
                 <input
+                    className="form-control"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     required
                 />
             </div>
 
-            <div>
-                <label>Voto</label><br />
+            <div className="mb-3">
+                <label className="form-label">Voto</label>
                 <input
                     type="number"
                     min="1"
                     max="5"
+                    className="form-control"
                     value={vote}
                     onChange={(e) => setVote(Number(e.target.value))}
                     required
                 />
             </div>
 
-            <div>
-                <label>Recensione</label><br />
+            <div className="mb-3">
+                <label className="form-label">Recensione</label>
                 <textarea
+                    className="form-control"
+                    rows="3"
                     value={text}
                     onChange={(e) => setText(e.target.value)}
                     required
                 />
             </div>
 
-            <button type="submit">Invia</button>
+            <button type="submit" className="btn btn-primary">
+                Invia
+            </button>
         </form>
     );
 }
