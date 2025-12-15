@@ -4,9 +4,13 @@ function ReviewForm() {
     const [name, setName] = useState("");
     const [vote, setVote] = useState(5);
     const [text, setText] = useState("");
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(name, vote, text);
+    };
 
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <h4>Aggiungi recensione</h4>
 
             <div>
