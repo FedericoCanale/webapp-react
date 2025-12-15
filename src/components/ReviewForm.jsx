@@ -1,21 +1,38 @@
 import { useState } from "react";
 import axios from "axios";
 
-function ReviewForm({ movieId }) {
+function ReviewForm({ movieId, onReviewCreated }) {
     const [name, setName] = useState("");
     const [vote, setVote] = useState(5);
     const [text, setText] = useState("");
 
     const handleSubmit = (e) => {
-        e.preventDefault();
 
-        axios.post(`http://localhost:3000/movies/${movieId}/reviews`, {
-            name,
-            vote,
-            text,
-        })
+
+        axios
+            .post(`http://localhost:3000/movies/${movieId}/reviews`, {
+                name,
+                vote,
+                text,
+            })
             .then((res) => {
                 console.log("Review salvata", res.data);
+
+                // creo la review da aggiungere subito in pagina
+                const newReview = {
+                    id: res.data.reviewId,
+                    name,
+                    vote,
+                    text,
+                };
+
+
+                onReviewCreated(newReview);
+
+
+                setName("");
+                setVote(5);
+                setText("");
             })
             .catch((err) => {
                 console.error(err);
@@ -28,7 +45,11 @@ function ReviewForm({ movieId }) {
 
             <div>
                 <label>Nome</label><br />
-                <input value={name} onChange={(e) => setName(e.target.value)} />
+                <input
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
+                />
             </div>
 
             <div>
@@ -39,12 +60,17 @@ function ReviewForm({ movieId }) {
                     max="5"
                     value={vote}
                     onChange={(e) => setVote(Number(e.target.value))}
+                    required
                 />
             </div>
 
             <div>
                 <label>Recensione</label><br />
-                <textarea value={text} onChange={(e) => setText(e.target.value)} />
+                <textarea
+                    value={text}
+                    onChange={(e) => setText(e.target.value)}
+                    required
+                />
             </div>
 
             <button type="submit">Invia</button>
