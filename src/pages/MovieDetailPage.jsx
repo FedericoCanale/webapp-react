@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import ReviewForm from "../components/ReviewForm";
 import axios from "axios";
 
 function MovieDetailPage() {
@@ -82,8 +83,11 @@ function MovieDetailPage() {
                     </li>
                 ))}
             </ul>
+            <ReviewForm />
         </div>
     );
+
 }
+
 
 export default MovieDetailPage;
