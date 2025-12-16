@@ -52,7 +52,7 @@ function ReviewForm({ movieId, onReviewCreated }) {
             <h4 className="mb-3">Aggiungi recensione</h4>
 
             <div className="mb-3">
-                <label className="form-label">Nome</label>
+                <label className="form-label"><strong>Nome</strong></label>
                 <input
                     className="form-control"
                     value={name}
@@ -62,20 +62,25 @@ function ReviewForm({ movieId, onReviewCreated }) {
             </div>
 
             <div className="mb-3">
-                <label className="form-label">Voto</label>
-                <input
-                    type="number"
-                    min="1"
-                    max="5"
-                    className="form-control"
-                    value={vote}
-                    onChange={(e) => setVote(Number(e.target.value))}
-                    required
-                />
+                <label className="form-label"><strong>Voto</strong></label>
+                <div className="mb-3">
+
+                    <div>
+                        {[1, 2, 3, 4, 5].map((star) => (
+                            <i
+                                key={star}
+                                className={`bi ${star <= vote ? "bi-star-fill" : "bi-star"} text-warning`}
+                                style={{ cursor: "pointer", fontSize: "1.2rem", marginRight: "4px" }}
+                                onClick={() => setVote(star)}
+                            ></i>
+                        ))}
+                    </div>
+                    <small className="text-muted">{vote}/5</small>
+                </div>
             </div>
 
             <div className="mb-3">
-                <label className="form-label">Recensione</label>
+                <label className="form-label"><strong>Recensione</strong></label>
                 <textarea
                     className="form-control"
                     rows="3"
@@ -86,7 +91,7 @@ function ReviewForm({ movieId, onReviewCreated }) {
             </div>
 
             <button type="submit" className="btn btn-primary">
-                Invia
+                <strong>Invia</strong>
             </button>
         </form>
     );
