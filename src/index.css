@@ -52,3 +52,12 @@ main {
   transform: translateY(-6px) rotate(-1deg);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
 }
+
+.loader-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}

@@ -1,14 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import ReviewForm from "../components/ReviewForm";
 import axios from "axios";
+import { LoaderContext } from "../context/LoaderContext";
 
 function MovieDetailPage() {
     const { id } = useParams();
     const [movie, setMovie] = useState(null);
     const [error, setError] = useState(false);
 
+    const { setIsLoading } = useContext(LoaderContext);
+
     useEffect(() => {
+        setIsLoading(true);
+
         axios
             .get(`http://localhost:3000/movies/${id}`)
             .then((res) => {
@@ -17,6 +22,9 @@ function MovieDetailPage() {
             .catch((err) => {
                 console.error("Errore nel caricamento del film:", err);
                 setError(true);
+            })
+            .finally(() => {
+                setIsLoading(false);
             });
     }, [id]);
 
@@ -25,14 +33,9 @@ function MovieDetailPage() {
     }
 
     if (!movie) {
-        return (
-            <div className="d-flex justify-content-center mt-5">
-                <div className="spinner-border text-primary" role="status">
-                    <span className="visually-hidden">Caricamento...</span>
-                </div>
-            </div>
-        );
+        return null;
     }
+
     function renderStars(vote) {
         const stars = [];
 
@@ -50,6 +53,7 @@ function MovieDetailPage() {
 
         return stars;
     }
+
     return (
         <div className="movie-detail">
 
@@ -83,6 +87,7 @@ function MovieDetailPage() {
                     </li>
                 ))}
             </ul>
+
             <ReviewForm
                 movieId={id}
                 onReviewCreated={(newReview) => {
@@ -94,8 +99,6 @@ function MovieDetailPage() {
             />
         </div>
     );
-
 }
-
 
 export default MovieDetailPage;

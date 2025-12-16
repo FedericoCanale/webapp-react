@@ -8,7 +8,7 @@ function Loader() {
             <l-helix
                 size="45"
                 speed="2.5"
-                color="white"
+                color="#0d6efd"
             ></l-helix>
         </div>
     );
