@@ -1,13 +1,19 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
+import { LoaderContext } from "../context/LoaderContext";
 
 function ReviewForm({ movieId, onReviewCreated }) {
     const [name, setName] = useState("");
     const [vote, setVote] = useState(5);
     const [text, setText] = useState("");
 
+
+    const { setIsLoading } = useContext(LoaderContext);
+
     const handleSubmit = (e) => {
 
+
+        setIsLoading(true);
 
         axios
             .post(`http://localhost:3000/movies/${movieId}/reviews`, {
@@ -18,14 +24,13 @@ function ReviewForm({ movieId, onReviewCreated }) {
             .then((res) => {
                 console.log("Review salvata", res.data);
 
-                // creo la review da aggiungere subito in pagina
+
                 const newReview = {
                     id: res.data.reviewId,
                     name,
                     vote,
                     text,
                 };
-
 
                 onReviewCreated(newReview);
 
@@ -36,6 +41,9 @@ function ReviewForm({ movieId, onReviewCreated }) {
             })
             .catch((err) => {
                 console.error(err);
+            })
+            .finally(() => {
+                setIsLoading(false);
             });
     };
 
