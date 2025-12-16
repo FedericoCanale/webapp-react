@@ -1,8 +1,15 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { LoaderContext } from "../context/LoaderContext";
+import Loader from "./Loader";
 
 function Layout({ children }) {
+    const { isLoading } = useContext(LoaderContext);
+
     return (
         <div>
+            {isLoading && <Loader />}
+
             {/* navbar */}
             <header>
                 <nav className="navbar navbar-dark bg-dark">
