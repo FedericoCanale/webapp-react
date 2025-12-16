@@ -66,6 +66,8 @@ function MovieDetailPage() {
                     className="movie-detail-img mb-4"
                 />
             )}
+            <h3 className="mb-2">Regista</h3>
+            <p className="mb-4">{movie.director}</p>
 
             <h3 className="mb-2">Descrizione</h3>
             <p className="mb-4">{movie.abstract}</p>
