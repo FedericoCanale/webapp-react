@@ -1,12 +1,17 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { LoaderContext } from "../context/LoaderContext";
 
 function HomePage() {
     const [movies, setMovies] = useState([]);
     const [error, setError] = useState(false);
 
+    const { setIsLoading } = useContext(LoaderContext);
+
     useEffect(() => {
+        setIsLoading(true);
+
         axios
             .get("http://localhost:3000/movies")
             .then((res) => {
@@ -14,6 +19,9 @@ function HomePage() {
             })
             .catch(() => {
                 setError(true);
+            })
+            .finally(() => {
+                setIsLoading(false);
             });
     }, []);
 
@@ -34,8 +42,6 @@ function HomePage() {
                             className="text-decoration-none text-dark"
                         >
                             <div className="card h-100">
-
-                                {/* Immagine */}
                                 {movie.image && (
                                     <img
                                         src={`http://localhost:3000/img/movies_cover/${movie.image}`}
@@ -44,7 +50,6 @@ function HomePage() {
                                     />
                                 )}
 
-                                {/* Titolo */}
                                 <div className="card-body">
                                     <h5 className="card-title text-center">{movie.title}</h5>
                                 </div>
